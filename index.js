@@ -11,7 +11,7 @@
  * getCohort({cohort: 3476, name: "Charlie"}); // 3476
  */
 export function getCohort(student) {
-  // TODO
+   return student.cohort
 }
 
 /**
@@ -30,8 +30,25 @@ export function getCohort(student) {
  * sortStudents({cohort: 1, name: "Alice"}, {cohort: 2, name: "Alice"}); // {cohort: 1, name: "Alice"}
  */
 export function sortStudents(studentA, studentB) {
-  // TODO
-}
+  const A = studentA["name"].toLowerCase();
+  const B = studentB["name"].toLowerCase();
+
+  
+  if(A < B){
+    return studentA;
+  }
+  else if (A === B && studentA.cohort < studentB.cohort){
+    return studentA
+  }
+  else if( studentA.name < studentB.name){
+    return studentB
+  }
+  else{
+    return studentB;
+  }
+  
+  }
+     
 
 /**
  * @typedef {{color: string, icon: string}} Flag
@@ -47,7 +64,11 @@ export function sortStudents(studentA, studentB) {
  * makeFlag("yellow", "triangle"); // { color: "yellow", icon: "triangle" }
  */
 export function makeFlag(color, icon) {
-  // TODO
+ const flag = {
+    color: color,
+    icon: icon
+  }
+  return flag
 }
 
 /**
@@ -63,7 +84,8 @@ export function makeFlag(color, icon) {
  * increment({value: -5}); // {value: -4}
  */
 export function increment(count) {
-  // TODO
+   count["value"]++;
+   return count
 }
 
 /**
@@ -90,8 +112,12 @@ export function increment(count) {
  *
  */
 export function getTaxicabDistance(from, to) {
-  // TODO
+  const distance = Math.abs((from["x"] - to["x"]) + (from["y"] - to["y"]))
+
+  return distance
 }
+
+
 
 /**
  * @typedef {{name: string, isHerbivore: boolean}} Animal
@@ -106,8 +132,15 @@ export function getTaxicabDistance(from, to) {
  * getHerbivores([{name: "Rabbit", isHerbivore: true}]); // [{name: "Rabbit", isHerbivore: true}]
  */
 export function getHerbivores(animals) {
-  // TODO
+  let herb = []
+  for (let animal of animals){
+    if(animal["isHerbivore"] === true){
+      herb.push(animal)
+  } 
+  }
+  return herb
 }
+
 
 /**
  * @typedef {{name: string, isCarnivore: boolean}} Animal
@@ -122,7 +155,13 @@ export function getHerbivores(animals) {
  * getCarnivoreNames([{name: "Wolf", isCarnivore: true}]); // ["Wolf"]
  */
 export function getCarnivoreNames(animals) {
-  // TODO
+ let names = []
+ for (let animal of animals){
+  if (animal["isCarnivore"] === true){
+    names.push(animal["name"])
+  }
+ }
+ return names
 }
 
 /**
@@ -143,8 +182,14 @@ export function getCarnivoreNames(animals) {
  * getTotalCost([{name: "Notebook", quantity: 0, price: 5}]); // 0
  */
 export function getTotalCost(cart) {
-  // TODO
+  let cost = 0;
+  for (let item of cart){
+    cost += (item["price"] * item["quantity"])
+  }
+  return cost
 }
+
+getTotalCost([{name: "Notebook", quantity: 2, price: 5}]);
 
 /**
  * Zip is an operation that merges two arrays into a single object.
@@ -163,7 +208,12 @@ export function getTotalCost(cart) {
  * zip(["x"], ["x"]); // {x: "x"}
  */
 export function zip(keys, values) {
-  // TODO
+  const zipped = {};
+    keys.forEach((key, index) => {
+      zipped[key] = values[index];
+    });
+
+    return zipped;
 }
 
 /**
@@ -179,5 +229,9 @@ export function zip(keys, values) {
  * countCharacters("aAa"); // {a: 2, A: 1}
  */
 export function countCharacters(word) {
-  // TODO
+  let count = {};
+  for(let i of word){
+    count[i] = (count[i] || 0) + 1;
+  }
+  return count;
 }
